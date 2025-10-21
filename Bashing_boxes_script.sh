@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 items=(
   "Packaged meat"
   "Winter coat"
@@ -47,3 +46,36 @@ remove_last() {
     items=("${items[@]}") #RE-index array to remove any gaps
   fi
 }
+
+remove_x() {
+  read -p "Enter position to remove (1-${#items[@]}): " pos
+  index=$((pos-1))
+  if [[ $index -ge 0 && $index -lt ${#items[@]} ]]; then
+    unset 'items[index]'
+    items=("${items[@]}")
+    echo "Item at position $pos removed."
+  else
+    echo "Invalid position."
+  fi
+}
+
+while true; do
+  echo ""
+  echo "Menu:"
+  echo "1. Print list"
+  echo "2. Print item at X position"
+  echo "3. Add item"
+  echo "4. Remove last item"
+  echo "5. Remove item at X position"
+  echo "6. Exit"
+  read -p "Enter option: " choice
+  case "$choice" in
+    1) print_list ;;
+    2) print_item ;;
+    3) add_item ;;
+    4) remove_last ;;
+    5) remove_x ;;
+    6) echo "Goodbye!"; exit 0 ;;
+    *) echo "Invalid option. Please try again." ;;
+  esac
+done
