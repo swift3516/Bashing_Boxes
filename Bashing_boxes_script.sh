@@ -13,7 +13,6 @@ items=(
   "Locket"
 )
 
-
 print_list() {
   echo ""
   echo "Items in the list:"
@@ -43,7 +42,7 @@ remove_last() {
     echo "List is already empty."
   else
     unset 'items[-1]'
-    items=("${items[@]}") #RE-index array to remove any gaps
+    items=("${items[@]}") # RE-index array to remove any gaps
   fi
 }
 
