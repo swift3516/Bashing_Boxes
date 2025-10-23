@@ -74,7 +74,12 @@ while true; do
     3) add_item ;;
     4) remove_last ;;
     5) remove_x ;;
-    6) echo "Goodbye!"; exit 0 ;;
+    6) 
+       echo "Goodbye!"
+       sleep 5
+       echo "Returning to terminal..."
+       exit 0
+       ;;
     *) echo "Invalid option. Please try again." ;;
   esac
 done
