@@ -21,7 +21,6 @@ box_items=(
     "Locket"
 )
 
-# Print all items in the box with their numbers
 print_box_items() {
     echo
     echo "Items in your box:"
@@ -30,7 +29,6 @@ print_box_items() {
     done
 }
 
-# Print item at a requested position
 print_item_at_position() {
     read -p "Enter item position (1-${#box_items[@]}): " position
     index=$((position-1))
@@ -41,14 +39,12 @@ print_item_at_position() {
     fi
 }
 
-# Add a new item to the end of the box
 add_item_to_box() {
     read -p "Enter new item to add: " new_item
     box_items+=("$new_item")
     echo "\"$new_item\" added to the box."
 }
 
-# Remove the last item from the box
 remove_last_item_from_box() {
     if [ ${#box_items[@]} -eq 0 ]; then
         echo "Box is already empty."
@@ -59,7 +55,6 @@ remove_last_item_from_box() {
     fi
 }
 
-# Remove an item at a given position from the box
 remove_item_at_position() {
     read -p "Enter position to remove (1-${#box_items[@]}): " position
     index=$((position-1))
@@ -72,7 +67,6 @@ remove_item_at_position() {
     fi
 }
 
-# Save the current box to a file in the data directory
 save_box_to_file() {
     read -p "Enter name for the save file: " filename
     if [[ ! "$filename" =~ ^[A-Za-z0-9_-]+$ ]]; then
@@ -84,7 +78,6 @@ save_box_to_file() {
     echo "Box saved to $file_path"
 }
 
-# Load box items from a selected file in the data directory
 load_box_from_file() {
     list_saved_boxes
     read -p "Enter filename to load (without extension): " filename
@@ -97,13 +90,11 @@ load_box_from_file() {
     echo "Box loaded from $file_path"
 }
 
-# List all saved box files in the data directory
 list_saved_boxes() {
     echo "Saved boxes:"
     ls "$data_dir"/*.box 2>/dev/null | xargs -n 1 basename || echo "No saved boxes found."
 }
 
-# Delete a chosen saved box file
 delete_box_file() {
     list_saved_boxes
     read -p "Enter the filename to delete (without extension): " filename
@@ -116,7 +107,6 @@ delete_box_file() {
     echo "Deleted $file_path"
 }
 
-# Ask user to save before exiting and then exit the program
 prompt_save_and_exit() {
     while true; do
         read -p "Would you like to save before exiting? (y/n): " yn
@@ -132,7 +122,6 @@ prompt_save_and_exit() {
     exit 0
 }
 
-# Main menu loop using a case statement
 while true; do
     echo
     echo "Menu:"
