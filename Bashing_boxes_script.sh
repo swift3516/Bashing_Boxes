@@ -1,13 +1,10 @@
 #!/bin/bash
-# Bashing Boxes - Cleaned and Organized Version
 
-# Ensure the data directory exists
 data_dir="data"
 if [ ! -d "$data_dir" ]; then
     mkdir "$data_dir"
 fi
 
-# Array holding your current box of items
 box_items=(
     "Packaged meat"
     "Winter coat"
