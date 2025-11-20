@@ -199,45 +199,12 @@ sort_box() {
     print_box_items
 }
 
-# filtered build
-build_filtered_box() {
-    load_object_pool || return
-    read -p "Start letter: " letter
-    letter="${letter,,}"
-
-    filtered=()
-    for item in "${pool[@]}"; do
-        first="${item:0:1}"
-        if [[ "${first,,}" == "$letter" ]]; then
-            filtered+=("$item")
-        fi
-    done
-
-    if [ ${#filtered[@]} -eq 0 ]; then
-        echo "No items with that letter."
-        return
-    fi
-
-    box_items=("${filtered[@]}")
-    echo "Filtered box created."
-}
-
-# toggle repeats
-toggle_repeats() {
-    if [ "$repeats_allowed" -eq 0 ]; then
-        repeats_allowed=1
-        echo "Repeats allowed."
-    else
-        repeats_allowed=0
-        echo "Repeats disabled."
-    fi
-}
 
 # save and exit
 prompt_save_and_exit() {
     read -p "Save box before exiting? (y/n): " yn
     [ "$yn" = "y" ] || [ "$yn" = "Y" ] && save_box_to_file
-    echo "Returning to terminal..."
+    echo "Thank you for playing Bashing Boxes! Returning To Terminal"
     sleep 5
     exit 0
 }
@@ -259,9 +226,7 @@ while true; do
     echo "11. Search box"
     echo "12. Search file"
     echo "13. Sort box"
-    echo "14. Build filtered box"
-    echo "15. Toggle repeats"
-    echo "16. Exit"
+    echo "14. Exit"
     read -p "Option: " choice
 
     case $choice in
@@ -278,9 +243,7 @@ while true; do
         11) search_box ;;
         12) search_file ;;
         13) sort_box ;;
-        14) build_filtered_box ;;
-        15) toggle_repeats ;;
-        16) prompt_save_and_exit ;;
+        14) prompt_save_and_exit ;;
         *) echo "Invalid." ;;
     esac
 done
